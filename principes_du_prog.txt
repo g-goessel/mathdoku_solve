@@ -1,0 +1,15 @@
+Stockage des données:
+
+
+un dict meta : {"lettre du bloc (A,...,Z,AA,....": (valeur a atteindre, [coordonnées des cases : (1,2), (2,2), ... ] )}
+
+une array tableau: [  [[1,2,..,9], [1,...,9], ...., [1,...,9]]
+                                  [[1,2,..,9], [1,...,9], ...., [1,...,9]]
+                                         ...            ...                ..
+                                  [[1,2,..,9], [1,...,9], ...., [1,...,9]]  ]
+
+             -->           array([[[i for i in range(1,10)] for j in range(1,10)] for k in range(1,10)])
+
+
+Conditions à vérifier au début :
+    si nbr_cases=1 alors valeurs=1
