@@ -1,7 +1,7 @@
 Stockage des données:
 
 
-un dict meta : {"lettre du bloc (A,...,Z,AA,....": (valeur a atteindre, [coordonnées des cases : (1,2), (2,2), ... ] )}
+un dict meta : {"lettre du bloc (A,...,Z,AA,....": (valeur a atteindre, [coordonnées des cases : (1,2), (2,2), ... ], [combinaisons possibles])}
 
 une array tableau: [  [[1,2,..,9], [1,...,9], ...., [1,...,9]]
                                   [[1,2,..,9], [1,...,9], ...., [1,...,9]]

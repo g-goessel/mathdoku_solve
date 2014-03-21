@@ -21,3 +21,18 @@ def clean(x, y, val, to_clean):
             for i in range(9):
                 if to_clean[x, colonne, i] == val:
                     to_clean[x, colonne, i] = 0
+
+
+def combi_possible(val_tot,nbr_cases):
+    """
+    retourne la liste des combinaisons possibles
+    """
+    #test si la valeur est certaine
+    if nbr_cases==1:
+        return [val_tot]
+    
+    val_possibles=[]
+
+    #test si addition possible
+    if val_tot<=9*nbr_cases:
+        for i in nbr_cases:
