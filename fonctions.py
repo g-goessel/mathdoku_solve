@@ -2,6 +2,9 @@
 fonctions 
 """
 
+from itertools import product
+from functools import reduce
+
 def clean(x, y, val, to_clean):
     """
     Cette fonction va nettoyer le tableau "to_clean" des combinaisons impossibles
@@ -23,16 +26,34 @@ def clean(x, y, val, to_clean):
                     to_clean[x, colonne, i] = 0
 
 
-def combi_possible(val_tot,nbr_cases):
+def combi_possibles(val_tot,nbr_cases):
     """
     retourne la liste des combinaisons possibles
     """
     #test si la valeur est certaine
     if nbr_cases==1:
-        return [val_tot]
+        return {'a': [val_tot]}
     
-    val_possibles=[]
+    combi_a=list()
+    combi_m=list()
+    combi_d=list()
+    combi_s=list()
 
-    #test si addition possible
-    if val_tot<=9*nbr_cases:
-        for i in nbr_cases:
+    combi_max=list(product([i for i in range (1,10)], repeat=nbr_cases))
+
+    for i in combi_max:
+        somme = sum(i)
+        produit = reduce(lambda x,y: x*y, i)
+        division = reduce(lambda x,y: x/y, i)
+        soustraction = reduce(lambda x,y: x-y, i)
+        if somme == val_tot:
+            combi_a.append(i)
+        if produit == val_tot:
+            combi_m.append(i)
+        if division == val_tot:
+            combi_d.append(i)
+        if soustraction == val_tot:
+            combi_s.append(i)
+
+    return {'a': combi_a, 'm': combi_m, 'd': combi_d, 's': combi_s}
+
