@@ -7,6 +7,8 @@ from functools import reduce
 
 def clean(x, y, val, to_clean):
     """
+    ACTUELLEMENT INUTILE
+
     Cette fonction va nettoyer le tableau "to_clean" des combinaisons impossibles
     sur les lignes et les colonnes a partir d'une valeur considérée comme certaine "val"
     située aux coordonnées (x,y)
@@ -54,3 +56,20 @@ def combi_possibles(val_tot,nbr_cases):
 
     return combi
 
+def cbonoupa(matrice):
+    """
+    Cette foncton va tester si matrice est correcte ou pas en vérifiant que
+    les chiffres n'apparaissent qu'une seule fois par ligne et par colonne
+
+    Retourne True si matrice est valable et False dans le cas contraire
+
+    Il suffit de verifier les cases de la "diagonale" de la matrice
+    """
+    for i in range(len(matrice)):
+        nombre_a_test=matrice[i,i]
+        for j in range(len(matrice)):
+            if j != i and (matrice[i,j]==nombre_a_test or matrice[j,i]==nombre_a_test):
+                return False
+
+    return True
+    
