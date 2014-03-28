@@ -3,9 +3,6 @@ Stockage des données:
 
 un dict meta : {"lettre du bloc (A,...,Z,AA,....": (valeur a atteindre, [coordonnées des cases : (1,2), (2,2), ... ], [combinaisons possibles])}
 
-[combinaisons possibles] est un dic du type : {a: [[1,1,2],[1,3,1],...], m : [....], d : [...], s : [...] }
-                                    avec a les combinaisons possibles par addition, m par multiplication, d par division et s par soustration
-
 
 une array tableau: [  [[1,2,..,9], [1,...,9], ...., [1,...,9]]
                                   [[1,2,..,9], [1,...,9], ...., [1,...,9]]

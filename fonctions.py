@@ -34,10 +34,7 @@ def combi_possibles(val_tot,nbr_cases):
     if nbr_cases==1:
         return {'a': [val_tot]}
     
-    combi_a=list()
-    combi_m=list()
-    combi_d=list()
-    combi_s=list()
+    combi=list()
 
     combi_max=list(product([i for i in range (1,10)], repeat=nbr_cases))
 
@@ -47,13 +44,13 @@ def combi_possibles(val_tot,nbr_cases):
         division = reduce(lambda x,y: x/y, i)
         soustraction = reduce(lambda x,y: x-y, i)
         if somme == val_tot:
-            combi_a.append(i)
+            combi.append(i)
         if produit == val_tot:
-            combi_m.append(i)
+            combi.append(i)
         if division == val_tot:
-            combi_d.append(i)
+            combi.append(i)
         if soustraction == val_tot:
-            combi_s.append(i)
+            combi.append(i)
 
-    return {'a': combi_a, 'm': combi_m, 'd': combi_d, 's': combi_s}
+    return combi
 
