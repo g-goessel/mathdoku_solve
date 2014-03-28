@@ -25,7 +25,7 @@ try:
             liste_node.append(node)
         liste_generale.append(liste_node)
         #on rajoute les combinaisons possibles dans le dict
-        liste_node.append(combi_possibles(valeur,nombre_elements))
+        liste_generale.append(combi_possibles(valeur,nombre_elements))
         donnees[lettre] = liste_generale
 
 except: 
