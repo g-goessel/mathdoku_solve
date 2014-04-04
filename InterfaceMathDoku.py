@@ -40,5 +40,27 @@ try:
 except: 
     print('Une erreur s\'est produite, veuillez réessayer')
 
+""" resolution - bruteforce """ 
+""" definir une matrice 9x9 """ 
+matrice = array()
+combinaisons = recupdico(donnees)
+""" [ [combi1 bloc A], [combi2 bloc B],..........,......]"""   
+resolu = False
+i = 1
+while resolu == False:
+    for simultaneite in range(1,i):
+        for n in range(1,len(combinaisons)):
+            for k in range(1,len(combinaisons[n])):
+                for elements in combinaisons[n][k]:
+                    matrice = ['a remplir']
+                    if cbonoupa(matrice) == True:
+                        print('Résolu')
+                        print(matrice)
+                        resolu = True
+                        break
+        print(matrice)
+    i+=1
+        
+
 
 print(grille)
