@@ -15,21 +15,25 @@ def combi_possibles(val_tot,nbr_cases):
         return {'a': [val_tot]}
     
     combi=list()
+    list_div=[i for i in range(1,10) if val_tot/i==int(val_tot/i)]
+    combi_max=list(product(list_div, repeat=nbr_cases))
 
-    combi_max=list(product([i for i in range (1,10)], repeat=nbr_cases))
+    if val_tot <= 9*nbr_cases:
+        #on peut avoir une addition
+        for i in list(product([i for i in range(1,10)],repeat=nbr_cases)):
+            soustraction = reduce(lambda x,y: x-y, i)
+            somme = sum(i)
+            if somme == val_tot:
+                combi.append(i)
+            if soustraction == val_tot:
+                combi.append(i)
 
     for i in combi_max:
-        somme = sum(i)
         produit = reduce(lambda x,y: x*y, i)
         division = reduce(lambda x,y: x/y, i)
-        soustraction = reduce(lambda x,y: x-y, i)
-        if somme == val_tot:
-            combi.append(i)
         if produit == val_tot:
             combi.append(i)
         if division == val_tot:
-            combi.append(i)
-        if soustraction == val_tot:
             combi.append(i)
 
     return combi
@@ -51,3 +55,6 @@ def cbonoupa(matrice):
 
     return True
     
+
+# Optimisations diverses
+
