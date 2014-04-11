@@ -1,7 +1,6 @@
 # Interface MathDoku
 
 from fonctions import *
-from numpy import array
 
 
 donnees = {}
@@ -41,7 +40,3 @@ except:
 
 print('Votre grille est :', grille)
 
-
-""" resolution - bruteforce """ 
-""" definir une matrice n*n """ 
-        
