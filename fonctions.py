@@ -12,7 +12,7 @@ def combi_possibles(val_tot,nbr_cases):
     """
     #test si la valeur est certaine
     if nbr_cases==1:
-        return {'a': [val_tot]}
+        return [val_tot]
     
     combi=list()
     list_div=[i for i in range(1,10) if val_tot/i==int(val_tot/i)]
@@ -38,20 +38,25 @@ def combi_possibles(val_tot,nbr_cases):
 
     return combi
 
-def cbonoupa(matrice):
+def bonoupas(matrice):
     """
     Cette foncton va tester si matrice est correcte ou pas en vérifiant que
     les chiffres n'apparaissent qu'une seule fois par ligne et par colonne
 
     Retourne True si matrice est valable et False dans le cas contraire
 
-    Il suffit de verifier les cases de la "diagonale" de la matrice
     """
-    for i in range(len(matrice)):
-        nombre_a_test=matrice[i,i]
-        for j in range(len(matrice)):
-            if j != i and (matrice[i,j]==nombre_a_test or matrice[j,i]==nombre_a_test):
-                return False
+    #on fixe (i_ref,j_ref) les coordonées d'une case que l'on veut vérifier comme étant unique sur ca ligne/colonne
+    for i_ref in range(len(matrice)):
+        for j_ref in range(len(matrice)):
+            #On vérifie l'unicité sur la colonne
+            for i in range(len(matrice)):
+                if matrice[i,j_ref]==matrice[i_ref,j_ref] and i != i_ref: return False
+
+            #Puis sur la ligne
+            for j in range(len(matrice)):
+                if matrice[i_ref,j]==matrice[i_ref,j_ref] and j != j_ref: return False
+
 
     return True
     

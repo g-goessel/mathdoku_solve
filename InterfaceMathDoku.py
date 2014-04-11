@@ -1,7 +1,8 @@
 # Interface MathDoku
 
 from fonctions import *
-
+from bruteforce import *
+from numpy import array
 
 donnees = {}
 taille=int(input('Taille de la grille ? '))
@@ -38,5 +39,9 @@ except:
     print('Une erreur s\'est produite, veuillez réessayer')
 
 
-print('Votre grille est :', grille)
+print('Votre grille est : \n', grille)
+print(donnees)
+
+resultat=bruteforce(donnees,taille)
+print('Résultat obtenu en ',resultat[1],'essais :\n',resultat[0])
 
