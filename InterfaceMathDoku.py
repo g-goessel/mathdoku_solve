@@ -5,14 +5,12 @@ from numpy import array
 
 
 donnees = {}
-lettres = ["a", "b", "c" , "d" ,"e" ,"f", "g", "h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 taille=int(input('Taille de la grille ? '))
 n = int(input('Nombre de blocs dans la grille \n'))
 grille=array([[0 for i in range(taille)] for j in range(taille)])
 try:
     for i in range(1,n+1):
         print('Votre grille : \n', grille)
-        lettre = lettres[i-1]
         valeur = int(input('Valeur du bloc ' +str(i) +'\n'))
         nombre_elements = int(input('Nombre d\'éléments du bloc \n'))
         #si il y a plus de 7 éléments dans le bloc il est trop gourmand en RAM de calculer les possibilités
@@ -35,32 +33,15 @@ try:
         liste_generale.append(to_add)
         #on rajoute les combinaisons possibles dans le dict
         liste_generale.append(combi_possibles(valeur,nombre_elements))
-        donnees[lettre] = liste_generale
+        donnees[i] = liste_generale
 
 except: 
     print('Une erreur s\'est produite, veuillez réessayer')
 
+
+print('Votre grille est :', grille)
+
+
 """ resolution - bruteforce """ 
-""" definir une matrice 9x9 """ 
-matrice = array()
-combinaisons = recupdico(donnees)
-""" [ [combi1 bloc A], [combi2 bloc B],..........,......]"""   
-resolu = False
-i = 1
-while resolu == False:
-    for simultaneite in range(1,i):
-        for n in range(1,len(combinaisons)):
-            for k in range(1,len(combinaisons[n])):
-                for elements in combinaisons[n][k]:
-                    matrice = ['a remplir']
-                    if cbonoupa(matrice) == True:
-                        print('Résolu')
-                        print(matrice)
-                        resolu = True
-                        break
-        print(matrice)
-    i+=1
+""" definir une matrice n*n """ 
         
-
-
-print(grille)
