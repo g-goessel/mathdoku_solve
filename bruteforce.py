@@ -1,6 +1,6 @@
 # Fichier contenant le bruteforce
 
-from numpy import array
+#from numpy import array
 from fonctions import *
 from time import time
 
@@ -22,12 +22,12 @@ def bruteforce(user_data,size):
 
     while 1:
         #on passe aux choses sérieuses : le remplissage de la grille to_test
-        to_test=array([[0 for i in range(size)] for j in range(size)])
+        to_test=list([[0 for i in range(size)] for j in range(size)])
 
         for bloc in user_data:
             i=0
             for case in user_data[bloc][1]:
-                to_test[case]=user_data[bloc][2][compteur[bloc][0]][i]
+                to_test[case[0]][case[1]]=user_data[bloc][2][compteur[bloc][0]][i]
                 i+=1
 
         #on test si cette grille est correcte

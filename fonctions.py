@@ -51,11 +51,11 @@ def bonoupas(matrice):
         for j_ref in range(len(matrice)):
             #On vérifie l'unicité sur la colonne
             for i in range(len(matrice)):
-                if matrice[i,j_ref]==matrice[i_ref,j_ref] and i != i_ref: return False
+                if matrice[i][j_ref]==matrice[i_ref][j_ref] and i != i_ref: return False
 
             #Puis sur la ligne
             for j in range(len(matrice)):
-                if matrice[i_ref,j]==matrice[i_ref,j_ref] and j != j_ref: return False
+                if matrice[i_ref][j]==matrice[i_ref][j_ref] and j != j_ref: return False
 
 
     return True

@@ -37,8 +37,9 @@ try:
 
     print('Votre grille est : \n', grille)
     print(donnees)
-    resultat=bruteforce(donnees,taille)
-    print('Résultat obtenu en ',resultat[1],'essais et ',resultat[2],'secondes :\n',resultat[0])
+    #l'utilisation d'une liste de listes est plus efficace qu'une matrice
+    resultat=bruteforce(donnees.tolist(),taille)
+    print('Résultat obtenu en ',resultat[1],'essais et ',resultat[2],'secondes :\n',array(resultat[0]))
 
 except: 
     print('Une erreur s\'est produite, veuillez réessayer')
