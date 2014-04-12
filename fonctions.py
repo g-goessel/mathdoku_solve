@@ -65,6 +65,12 @@ def bonoupas(matrice):
 
 def optimize(user_data):
     """
+    On peut enlever les doublons
+    """
+    for i in user_data:
+        user_data[i][2]=list(set(user_data[i][2]))
+
+    """
     On utilise les blocs avec une seule probabilité pour éliminer un grand nombre de cas certainement impossibles
     """
     #on récupère la liste des blocs unitaires
