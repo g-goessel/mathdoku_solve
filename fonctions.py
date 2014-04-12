@@ -63,3 +63,26 @@ def bonoupas(matrice):
 
 # Optimisations diverses
 
+def optimize(user_data):
+    """
+    On utilise les blocs avec une seule probabilité pour éliminer un grand nombre de cas certainement impossibles
+    """
+    #on récupère la liste des blocs unitaires
+    blocs_solo=list()
+    for i in user_data:
+        if len(user_data[i][2])==1:
+            blocs_solo.append(i)
+
+    for bloc_solo in blocs_solo:
+        coord_bloc_solo=user_data[bloc_solo][1][0]
+        for bloc_to_clean in user_data:
+            if bloc_to_clean==bloc_solo: pass
+            else :
+                #on crée la liste contenant la liste des cases qui vont nous intéresser dans bloc_to_clean
+                cases_to_clean=[i for i,x in enumerate(user_data[bloc_to_clean][1]) if x[0]==coord_bloc_solo[0] or x[1]==coord_bloc_solo[1]]
+                for case_to_clean in cases_to_clean:
+                    for i,coord in enumerate(user_data[bloc_to_clean][2]):
+                        if user_data[bloc_to_clean][2][i][case_to_clean] == user_data[bloc_solo][0]: del(user_data[bloc_to_clean][2][i])
+
+
+    return user_data
