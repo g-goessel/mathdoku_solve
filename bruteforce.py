@@ -2,11 +2,14 @@
 
 from numpy import array
 from fonctions import *
+from time import time
+
 def bruteforce(user_data,size):
     '''
     Cette fonction va résoudre la grille en utilisant une technique de bruteforce
     On va itérer par ordre croissant de possibilités
     '''
+    t_start=time()
 
     #compteur global du nombre d'itération
     nbr_ite=0
@@ -29,7 +32,8 @@ def bruteforce(user_data,size):
 
         #on test si cette grille est correcte
         if  bonoupas(to_test)==True:
-            return to_test,nbr_ite
+            t_end=time()
+            return to_test,nbr_ite,t_end-t_start
             break
         else : 
             #sinon on passe à la combinaison suivante
@@ -37,6 +41,8 @@ def bruteforce(user_data,size):
             while 1:
                 if compteur[sorted_blocs[i]][0]+1 < compteur[sorted_blocs[i]][1]:
                     compteur[sorted_blocs[i]][0]+=1
+                    #debugage : on print le compteur toutes les 100 itérations
+                    if nbr_ite/(2464*20)==nbr_ite//(2464*20):print([compteur[i] for i in sorted_blocs])
                     break
                 else:
                     compteur[sorted_blocs[i]][0]=0

@@ -12,7 +12,7 @@ def combi_possibles(val_tot,nbr_cases):
     """
     #test si la valeur est certaine
     if nbr_cases==1:
-        return [val_tot]
+        return [(val_tot,)]
     
     combi=list()
     list_div=[i for i in range(1,10) if val_tot/i==int(val_tot/i)]

@@ -35,13 +35,13 @@ try:
         liste_generale.append(combi_possibles(valeur,nombre_elements))
         donnees[i] = liste_generale
 
+    print('Votre grille est : \n', grille)
+    print(donnees)
+    resultat=bruteforce(donnees,taille)
+    print('Résultat obtenu en ',resultat[1],'essais et ',resultat[2],'secondes :\n',resultat[0])
+
 except: 
     print('Une erreur s\'est produite, veuillez réessayer')
 
 
-print('Votre grille est : \n', grille)
-print(donnees)
-
-resultat=bruteforce(donnees,taille)
-print('Résultat obtenu en ',resultat[1],'essais :\n',resultat[0])
 
