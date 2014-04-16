@@ -52,4 +52,3 @@ class Ui_MathDoku(object):
         MathDoku.setWindowTitle(_translate("MathDoku", "Dialog"))
         self.label_2.setText(_translate("MathDoku", "<html><head/><body><p><span style=\" font-size:12pt;\">Veuillez entrer la taille de la grille à résoudre</span></p></body></html>"))
         self.label_3.setText(_translate("MathDoku", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">1</span></p></body></html>"))
-
