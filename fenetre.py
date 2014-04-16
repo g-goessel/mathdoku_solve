@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 import sys
 from t import *
-from t2 import *
+#from t2 import *
 
 global taille_grille
 taille_grille = 1
@@ -26,7 +26,7 @@ class MathDoku(QDialog):
         self.ui.setupUi(self)
 
 		
-    def print_lable(self,x):
+    def export_taille(self,x):
         global taille_grille
         taille_grille = x
     

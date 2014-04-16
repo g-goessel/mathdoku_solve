@@ -40,7 +40,7 @@ class Ui_MathDoku(object):
         self.buttonBox_2.accepted.connect(MathDoku.clique_ok)
         self.buttonBox_2.rejected.connect(MathDoku.close)
         self.horizontalSlider.valueChanged['int'].connect(self.label_3.setNum)
-        self.horizontalSlider.valueChanged['int'].connect(MathDoku.print_lable)
+        self.horizontalSlider.valueChanged['int'].connect(MathDoku.export_taille)
         QtCore.QMetaObject.connectSlotsByName(MathDoku)
 
     def retranslateUi(self, MathDoku):
