@@ -1,10 +1,7 @@
 from PyQt5.QtWidgets import *
 import sys
 from t import *
-#from t2 import *
-
-global taille_grille
-taille_grille = 1
+from t2 import *
 
 class FenetrePrincipal(QDialog):
     def __init__(self, parent=None):
@@ -16,6 +13,8 @@ class FenetrePrincipal(QDialog):
         self.ui.setupUi(self)
  
 class MathDoku(QDialog):
+    global taille_grille
+    taille_grille=int()
 
     def __init__(self, parent=None):
         super(MathDoku, self).__init__(parent)
@@ -29,11 +28,18 @@ class MathDoku(QDialog):
     def export_taille(self,x):
         global taille_grille
         taille_grille = x
+        print(x)
     
     def clique_ok(self):
+        global taille_grille
         self.close()
+        print(taille_grille)
         self.screen2 = FenetrePrincipal()
         self.screen2.show()
+
+    def return_taille_grille():
+        global taille_grille
+        return taille_grille
 		
 if __name__=='__main__':
 
@@ -45,5 +51,5 @@ if __name__=='__main__':
     screen.show()
 
     app.exec_()
-    print(taille_grille)
+    #print(taille_grille)
     

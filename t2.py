@@ -8,6 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import fenetre
 
 class Ui_Principal(object):
     def setupUi(self, Principal):
@@ -17,11 +18,12 @@ class Ui_Principal(object):
         17 correspond à ?
         """
 
-        global taille_grille
+        #taille_grille = 7
 
         checkBox_dict=dict()
-        for i in range(taille_grille):
-            for j in range(taille_grille):
+        print('on recois : ',fenetre.MathDoku.return_taille_grille())
+        for i in range(fenetre.MathDoku.return_taille_grille()):
+            for j in range(fenetre.MathDoku.return_taille_grille()):
                 checkBox_dict[str(i)+'_'+str(j)]=(30+30*i,30+30*j,20,17)
 
 
@@ -39,7 +41,7 @@ class Ui_Principal(object):
             self.checkBox.setText("")
             self.checkBox.setObjectName("checkBox")
 
-            c
+        
         # self.checkBox_2 = QtWidgets.QCheckBox(Principal)
         # self.checkBox_2.setGeometry(QtCore.QRect(30, 50, 20, 17))
         # self.checkBox_2.setText("")
@@ -72,6 +74,8 @@ class Ui_Principal(object):
         # self.checkBox_9.setGeometry(QtCore.QRect(90, 20, 70, 17))
         # self.checkBox_9.setText("")
         # self.checkBox_9.setObjectName("checkBox_9")
+
+
         self.textEdit = QtWidgets.QTextEdit(Principal)
         self.textEdit.setGeometry(QtCore.QRect(150, 30, 104, 31))
         self.textEdit.setObjectName("textEdit")
