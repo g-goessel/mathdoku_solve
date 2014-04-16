@@ -12,11 +12,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Principal(object):
     def setupUi(self, Principal):
         """
-        checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(x,y,20,17) 
-        20 correspond à la largeur et 17 à ?
+        checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(position_x,position_y,20,17) 
+        20 correspond à la largeur
+        17 correspond à ?
         """
 
-        taille_grille=4
+        global taille_grille
 
         checkBox_dict=dict()
         for i in range(taille_grille):
@@ -38,7 +39,7 @@ class Ui_Principal(object):
             self.checkBox.setText("")
             self.checkBox.setObjectName("checkBox")
 
-            
+            c
         # self.checkBox_2 = QtWidgets.QCheckBox(Principal)
         # self.checkBox_2.setGeometry(QtCore.QRect(30, 50, 20, 17))
         # self.checkBox_2.setText("")
