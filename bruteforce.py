@@ -52,5 +52,4 @@ def bruteforce(user_data,size):
                         i+=1
                 except :
                     return (False,'Pas de solution touvée')
-
         nbr_ite+=1
