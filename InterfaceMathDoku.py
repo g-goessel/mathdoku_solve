@@ -32,7 +32,7 @@ try:
 
         liste_generale.append(to_add)
         #on rajoute les combinaisons possibles dans le dict
-        liste_generale.append(combi_possibles(valeur,nombre_elements))
+        liste_generale.append(combi_possibles(valeur,nombre_elements,n))
         donnees[i] = liste_generale
 
     print('Votre grille est : \n', grille)
