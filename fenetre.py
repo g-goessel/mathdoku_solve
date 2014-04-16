@@ -2,8 +2,10 @@ from PyQt5.QtWidgets import *
 import sys
 from t import *
 from t2 import *
+
 global taille_grille
 taille_grille = 1
+
 class FenetrePrincipal(QDialog):
     def __init__(self, parent=None):
         super(FenetrePrincipal, self).__init__(parent)
