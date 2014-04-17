@@ -11,19 +11,24 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import fenetre
 
 class Ui_Principal(object):
+
+    def __init__(self,a):
+        global taille_grille
+        taille_grille=a[1]
+
     def setupUi(self, Principal):
         """
         checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(position_x,position_y,20,17) 
         20 correspond à la largeur
-        17 correspond à ?
+        17 correspond à ...?
         """
 
         #taille_grille = 7
-
+        global taille_grille
         checkBox_dict=dict()
-        print('on recois : ',fenetre.MathDoku.return_taille_grille())
-        for i in range(fenetre.MathDoku.return_taille_grille()):
-            for j in range(fenetre.MathDoku.return_taille_grille()):
+        print('recu : ',taille_grille)
+        for i in range(taille_grille):
+            for j in range(taille_grille):
                 checkBox_dict[str(i)+'_'+str(j)]=(30+30*i,30+30*j,20,17)
 
 
