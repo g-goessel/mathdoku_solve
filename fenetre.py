@@ -9,7 +9,6 @@ class FenetrePrincipal(QDialog):
     def __init__(self,parametres ,parent=None):
         global taille_grille
         taille_grille=parametres
-        print('FenetrePrincipale',parametres)
         super(FenetrePrincipal, self).__init__(parent)
         self.createWidgets()
  
@@ -33,11 +32,9 @@ class MathDoku(QDialog):
     def export_taille(self,x):
         #global taille_grille
         self.taille_grille[1] = x
-        print(x)
     
     def clique_ok(self):
         self.close()
-        print(self.taille_grille)
         self.screen2 = FenetrePrincipal(self.taille_grille)
         self.screen2.show()
 		
@@ -49,5 +46,4 @@ if __name__=='__main__':
     screen.show()
 
     app.exec_()
-    print(MathDoku.taille_grille)
     

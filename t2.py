@@ -22,22 +22,21 @@ class Ui_Principal(object):
         20 correspond à la largeur
         17 correspond à ...?
         """
-
-        #taille_grille = 7
         global taille_grille
         checkBox_dict=dict()
-        print('recu : ',taille_grille)
         for i in range(taille_grille):
             for j in range(taille_grille):
                 checkBox_dict[str(i)+'_'+str(j)]=(30+30*i,30+30*j,20,17)
 
+        largeur=max(450,250+50*taille_grille)
+        longueur = max(200,60+30*taille_grille)
 
         Principal.setObjectName("Principal")
-        Principal.resize(800, 800)
+        Principal.resize(largeur,longueur)
         self.buttonBox = QtWidgets.QDialogButtonBox(Principal)
         self.buttonBox.setGeometry(QtCore.QRect(30, 140, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel)
         self.buttonBox.setObjectName("buttonBox")
 
         for checkBox in checkBox_dict:
@@ -45,40 +44,6 @@ class Ui_Principal(object):
             self.checkBox.setGeometry(QtCore.QRect(*checkBox_dict[checkBox]))
             self.checkBox.setText("")
             self.checkBox.setObjectName("checkBox")
-
-        
-        # self.checkBox_2 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_2.setGeometry(QtCore.QRect(30, 50, 20, 17))
-        # self.checkBox_2.setText("")
-        # self.checkBox_2.setObjectName("checkBox_2")
-        # self.checkBox_3 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_3.setGeometry(QtCore.QRect(30, 80, 70, 17))
-        # self.checkBox_3.setText("")
-        # self.checkBox_3.setObjectName("checkBox_3")
-        # self.checkBox_4 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_4.setGeometry(QtCore.QRect(60, 20, 70, 17))
-        # self.checkBox_4.setText("")
-        # self.checkBox_4.setObjectName("checkBox_4")
-        # self.checkBox_5 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_5.setGeometry(QtCore.QRect(60, 50, 70, 17))
-        # self.checkBox_5.setText("")
-        # self.checkBox_5.setObjectName("checkBox_5")
-        # self.checkBox_6 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_6.setGeometry(QtCore.QRect(60, 80, 70, 17))
-        # self.checkBox_6.setText("")
-        # self.checkBox_6.setObjectName("checkBox_6")
-        # self.checkBox_7 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_7.setGeometry(QtCore.QRect(90, 80, 70, 17))
-        # self.checkBox_7.setText("")
-        # self.checkBox_7.setObjectName("checkBox_7")
-        # self.checkBox_8 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_8.setGeometry(QtCore.QRect(90, 50, 70, 17))
-        # self.checkBox_8.setText("")
-        # self.checkBox_8.setObjectName("checkBox_8")
-        # self.checkBox_9 = QtWidgets.QCheckBox(Principal)
-        # self.checkBox_9.setGeometry(QtCore.QRect(90, 20, 70, 17))
-        # self.checkBox_9.setText("")
-        # self.checkBox_9.setObjectName("checkBox_9")
 
 
         self.textEdit = QtWidgets.QTextEdit(Principal)
@@ -98,7 +63,6 @@ class Ui_Principal(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Principal)
-        self.buttonBox.accepted.connect(Principal.accept)
         self.buttonBox.rejected.connect(Principal.reject)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
@@ -109,4 +73,3 @@ class Ui_Principal(object):
         self.pushButton.setText(_translate("Principal", "Résoudre"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_3.setText(_translate("Principal", "Enregister..."))
-
