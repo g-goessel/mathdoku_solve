@@ -13,7 +13,7 @@ class Ui_MathDoku(object):
     def setupUi(self, MathDoku):
         MathDoku.setObjectName("MathDoku")
         MathDoku.resize(499, 92)
-        MathDoku.setStyleSheet("font: 8pt \"Comic Sans MS\";")
+        # MathDoku.setStyleSheet("font: 8pt \"Comic Sans MS\";")
         self.horizontalSlider = QtWidgets.QSlider(MathDoku)
         self.horizontalSlider.setGeometry(QtCore.QRect(50, 50, 160, 22))
         self.horizontalSlider.setMinimum(1)
@@ -33,7 +33,7 @@ class Ui_MathDoku(object):
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(MathDoku)
         self.label_3.setGeometry(QtCore.QRect(240, 50, 41, 20))
-        self.label_3.setStyleSheet("font: 16pt \"MS Shell Dlg 2\";")
+        # self.label_3.setStyleSheet("font: 16pt \"MS Shell Dlg 2\";")
         self.label_3.setObjectName("label_3")
 
         self.retranslateUi(MathDoku)
@@ -47,5 +47,5 @@ class Ui_MathDoku(object):
         _translate = QtCore.QCoreApplication.translate
         MathDoku.setWindowTitle(_translate("MathDoku", "Dialog"))
         self.label_2.setText(_translate("MathDoku", "<html><head/><body><p><span style=\" font-size:12pt;\">Veuillez entrer la taille de la grille à résoudre</span></p></body></html>"))
-        self.label_3.setText(_translate("MathDoku", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">1</span></p></body></html>"))
+        self.label_3.setText(_translate("MathDoku", "1"))
 
