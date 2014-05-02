@@ -69,7 +69,6 @@ class Ui_Principal(object):
     def retranslateUi(self, Principal):
         _translate = QtCore.QCoreApplication.translate
         Principal.setWindowTitle(_translate("Principal", "Dialog"))
-        self.label.setText(_translate("Principal", "Résolution du MathDoku"))
         self.pushButton.setText(_translate("Principal", "Résoudre"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_3.setText(_translate("Principal", "Enregister..."))
