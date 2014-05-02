@@ -21,8 +21,6 @@ class FenetrePrincipal(QDialog):
         self.ui = Ui_Principal(taille_grille)
         self.ui.setupUi(self)
 
-    def resou
-
     def domaine(self):
         global taille_grille
         global dico
