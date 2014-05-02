@@ -49,7 +49,7 @@ class Ui_Principal(object):
         self.textEdit = QtWidgets.QTextEdit(Principal)
         self.textEdit.setGeometry(QtCore.QRect(150, 30, 104, 31))
         self.textEdit.setObjectName("textEdit")
-        self.pushButton_4 = QtWidgets.QpushButton(Principal)
+        self.pushButton_4 = QtWidgets.QPushButton(Principal)
         self.pushButton_4.setGeometry(QtCore.QRect(270, 30, 131, 16))
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton = QtWidgets.QPushButton(Principal)
