@@ -63,7 +63,7 @@ class Ui_Principal(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Principal)
-        self.pushButton_4.connect(Principal.domaine)
+        self.pushButton_4.connect(FenetrePrincipal.domaine)
         self.buttonBox.rejected.connect(Principal.reject)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
