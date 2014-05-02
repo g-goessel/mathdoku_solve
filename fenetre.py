@@ -20,7 +20,7 @@ class FenetrePrincipal(QDialog):
         global taille_grille
         self.ui = Ui_Principal(taille_grille)
         self.ui.setupUi(self)
-        
+
     def domaine(self):
         global taille_grille
         global dico
@@ -34,7 +34,7 @@ class FenetrePrincipal(QDialog):
                     liste_coordonnees.append((i,j))
         liste.append(numero_domaine)
         liste.append(liste_coordonnees)
-        dico(reference) = liste
+        dico[reference] = liste
         reference += 1
  
 class MathDoku(QDialog):
