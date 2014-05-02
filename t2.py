@@ -20,7 +20,7 @@ class Ui_Principal(object):
         """
         checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(position_x,position_y,20,17) 
         20 correspond à la largeur
-        17 correspond à ...?
+        17 correspond à la hauteur
         """
         global taille_grille
         checkBox_dict=dict()
@@ -47,19 +47,19 @@ class Ui_Principal(object):
 
 
         self.textEdit = QtWidgets.QTextEdit(Principal)
-        self.textEdit.setGeometry(QtCore.QRect(150, 30, 104, 31))
+        self.textEdit.setGeometry(QtCore.QRect(largeur-270, 30, 104, 31))
         self.textEdit.setObjectName("textEdit")
         self.pushButton_4 = QtWidgets.QPushButton(Principal)
-        self.pushButton_4.setGeometry(QtCore.QRect(270, 30, 131, 16))
+        self.pushButton_4.setGeometry(QtCore.QRect(largeur-140, 30, 131, 16))
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton = QtWidgets.QPushButton(Principal)
-        self.pushButton.setGeometry(QtCore.QRect(150, 90, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(160, 90, 75, 23))
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(Principal)
         self.pushButton_2.setGeometry(QtCore.QRect(240, 90, 75, 23))
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(Principal)
-        self.pushButton_3.setGeometry(QtCore.QRect(320, 90, 75, 23))
+        self.pushButton_3.setGeometry(QtCore.QRect(320, 90, 95, 23))
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Principal)
@@ -71,5 +71,5 @@ class Ui_Principal(object):
         Principal.setWindowTitle(_translate("Principal", "Dialog"))
         self.pushButton.setText(_translate("Principal", "Résoudre"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
-        self.pushButton_3.setText(_translate("Principal", "Enregister..."))
+        self.pushButton_3.setText(_translate("Principal", "Sauvegarde"))
         self.pushButton_4.setText(_translate("Principal", "Valider le nombre du domaine"))
