@@ -26,7 +26,7 @@ class Ui_Principal(object):
         checkBox_dict=dict()
         for i in range(taille_grille):
             for j in range(taille_grille):
-                checkBox_dict[str(i)+'_'+str(j)]=(30+30*i,30+30*j,20,17)
+                checkBox_dict[(i,j)]=(30+30*i,30+30*j,20,17)
 
         largeur=max(450,250+50*taille_grille)
         longueur = max(200,60+30*taille_grille)
@@ -63,6 +63,7 @@ class Ui_Principal(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Principal)
+        self.pushButton_4.connect(FenetrePrincipal.domaine)
         self.buttonBox.rejected.connect(Principal.reject)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
@@ -71,5 +72,6 @@ class Ui_Principal(object):
         Principal.setWindowTitle(_translate("Principal", "Dialog"))
         self.pushButton.setText(_translate("Principal", "Résoudre"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
-        self.pushButton_3.setText(_translate("Principal", "Sauvegarde"))
-        self.pushButton_4.setText(_translate("Principal", "Valider le nombre du domaine"))
+        self.pushButton_3.setText(_translate("Principal", "Enregister"))
+        self.pushButton_4.setText(_translate("Principal", "Domaine OK"))
+>>>>>>> 23be7799c55c654f208c86f68e1b071e0aff1935
