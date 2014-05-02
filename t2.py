@@ -63,7 +63,7 @@ class Ui_Principal(object):
         self.pushButton_3.setObjectName("pushButton_3")
 
         self.retranslateUi(Principal)
-        self.pushButton_4.connect(FenetrePrincipal.domaine)
+        self.pushButton_4.clicked.connect(Principal.domaine)
         self.buttonBox.rejected.connect(Principal.reject)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
@@ -74,4 +74,4 @@ class Ui_Principal(object):
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_3.setText(_translate("Principal", "Enregister"))
         self.pushButton_4.setText(_translate("Principal", "Domaine OK"))
->>>>>>> 23be7799c55c654f208c86f68e1b071e0aff1935
+        

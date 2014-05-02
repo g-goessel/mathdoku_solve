@@ -27,7 +27,7 @@ class FenetrePrincipal(QDialog):
         global reference
         liste_coordonnees = []
         liste = []
-        numero_domaine = int(self.ui.textEdit.text())
+        numero_domaine = int(self.ui.textEdit.plainText())
         for i in range(taille_grille):
             for j in range(taille_grille):        
                 if self.ui.checkBox_dict[(i,j)].isChecked():
