@@ -23,10 +23,10 @@ class Ui_Principal(object):
         17 correspond à la hauteur
         """
         global taille_grille
-        checkBox_dict=dict()
+        self.checkBox_dict=dict()
         for i in range(taille_grille):
             for j in range(taille_grille):
-                checkBox_dict[(i,j)]=(30+30*i,30+30*j,20,17)
+                self.checkBox_dict[(i,j)]=(30+30*i,30+30*j,20,17)
 
         largeur=max(450,250+50*taille_grille)
         longueur = max(200,60+30*taille_grille)
@@ -38,14 +38,13 @@ class Ui_Principal(object):
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel)
         self.buttonBox.setObjectName("buttonBox")
-
-        for checkBox in checkBox_dict:
+        i = 0
+        for checkBox in self.checkBox_dict:
             self.checkBox = QtWidgets.QCheckBox(Principal)
-            self.checkBox.setGeometry(QtCore.QRect(*checkBox_dict[checkBox]))
+            self.checkBox.setGeometry(QtCore.QRect(*self.checkBox_dict[checkBox]))
             self.checkBox.setText("")
-            self.checkBox.setObjectName("checkBox")
-
-
+            self.checkBox.setObjectName("checkBox" + str(i))
+            i += 1
         self.textEdit = QtWidgets.QTextEdit(Principal)
         self.textEdit.setGeometry(QtCore.QRect(largeur-270, 30, 104, 31))
         self.textEdit.setObjectName("textEdit")
