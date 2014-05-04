@@ -83,8 +83,11 @@ class Ui_Principal(object):
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
     def retranslateUi(self, Principal):
+    
+        global taille_grille 
+        
         _translate = QtCore.QCoreApplication.translate
-        Principal.setWindowTitle(_translate("Principal", "Dialog"))
+        Principal.setWindowTitle(_translate("Principal", "Résolution du MathDoku de taille " + str(taille_grille) + 'x' + str(taille_grille)))
         self.pushButton.setText(_translate("Principal", "Résoudre"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_4.setText(_translate("Principal", "Valider"))

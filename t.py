@@ -45,7 +45,7 @@ class Ui_MathDoku(object):
 
     def retranslateUi(self, MathDoku):
         _translate = QtCore.QCoreApplication.translate
-        MathDoku.setWindowTitle(_translate("MathDoku", "Dialog"))
+        MathDoku.setWindowTitle(_translate("MathDoku", "Choix de la taille de grille du MathDoku"))
         self.label_2.setText(_translate("MathDoku", "<html><head/><body><p><span style=\" font-size:12pt;\">Veuillez entrer la taille de la grille à résoudre</span></p></body></html>"))
         self.label_3.setText(_translate("MathDoku", "1"))
 
