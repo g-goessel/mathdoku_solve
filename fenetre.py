@@ -5,7 +5,7 @@ import pickle
 from t import *
 from t2 import *
 from fonctions import *
-
+from bruteforce import *
 class FenetrePrincipal(QDialog):
     global taille_grille
     global dico
@@ -72,7 +72,8 @@ class FenetrePrincipal(QDialog):
             print(valeur)
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
             print(dico[element])
-    
+            resultat=bruteforce(dico.tolist(),taille_grille[1])
+            print('Résultat obtenu en ',resultat[1],'essais et ',resultat[2],'secondes :\n',array(resultat[0]))    
     
 class MathDoku(QDialog):
     #global taille_grille
