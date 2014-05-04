@@ -51,10 +51,10 @@ class Ui_Principal(object):
         self.pushButton_4.setGeometry(QtCore.QRect(largeur-140, 35, 131, 23))
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton = QtWidgets.QPushButton(Principal)
-        self.pushButton.setGeometry(QtCore.QRect(largeur-80, 140, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(largeur-80, longueur - 30, 75, 23))
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(Principal)
-        self.pushButton_2.setGeometry(QtCore.QRect(largeur - 160, 140, 75, 23))
+        self.pushButton_2.setGeometry(QtCore.QRect(largeur - 160, longueur - 30, 75, 23))
         self.pushButton_2.setObjectName("pushButton_2")
         
         ###                     MENU                        ###
