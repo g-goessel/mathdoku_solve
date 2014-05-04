@@ -51,29 +51,43 @@ class Ui_Principal(object):
         self.pushButton_4.setGeometry(QtCore.QRect(largeur-140, 35, 131, 23))
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton = QtWidgets.QPushButton(Principal)
-        self.pushButton.setGeometry(QtCore.QRect(320, 140, 75, 23))
+        self.pushButton.setGeometry(QtCore.QRect(largeur-80, 140, 75, 23))
         self.pushButton.setObjectName("pushButton")
-        """self.pushButton_2 = QtWidgets.QPushButton(Principal)
-        self.pushButton_2.setGeometry(QtCore.QRect(240, 90, 75, 23))
-        self.pushButton_2.setObjectName("pushButton_2")"""
-        self.pushButton_3 = QtWidgets.QPushButton(Principal)
-        self.pushButton_3.setGeometry(QtCore.QRect(320, 90, 95, 23))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_5 = QtWidgets.QPushButton(Principal)
-        self.pushButton_5.setGeometry(QtCore.QRect(180, 90, 95, 23))
-        self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_2 = QtWidgets.QPushButton(Principal)
+        self.pushButton_2.setGeometry(QtCore.QRect(largeur - 160, 140, 75, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        
+        ###                     MENU                        ###
+        
+        self.menubar = QtWidgets.QMenuBar(Principal)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        self.menuFichier = QtWidgets.QMenu(self.menubar)
+        self.menuFichier.setObjectName("menuFichier")
+        self.statusbar = QtWidgets.QStatusBar(Principal)
+        self.statusbar.setObjectName("statusbar")
+        self.ouvrir_grille = QtWidgets.QAction(Principal)
+        self.ouvrir_grille.setObjectName("ouvrir_grille")
+        self.enregistrer_grille = QtWidgets.QAction(Principal)
+        self.enregistrer_grille.setObjectName("ouvrir_grille")
+        self.menuFichier.addAction(self.ouvrir_grille)
+        self.menuFichier.addAction(self.enregistrer_grille)
+        self.menubar.addAction(self.menuFichier.menuAction())
+        
+        ###                     MENU                        ###
         
         self.retranslateUi(Principal)
-        self.pushButton_5.clicked.connect(Principal.ouvrir_grille)
+        self.ouvrir_grille.triggered.connect(Principal.ouvrir_grille)
+        self.enregistrer_grille.triggered.connect(Principal.enregistrer_grille)
         self.pushButton_4.clicked.connect(Principal.domaine)
-        self.pushButton_3.clicked.connect(Principal.enregistrer_grille)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
     def retranslateUi(self, Principal):
         _translate = QtCore.QCoreApplication.translate
         Principal.setWindowTitle(_translate("Principal", "Dialog"))
         self.pushButton.setText(_translate("Principal", "Résoudre"))
-        #self.pushButton_2.setText(_translate("Principal", "Effacer"))
-        self.pushButton_3.setText(_translate("Principal", "Enregister"))
+        self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_4.setText(_translate("Principal", "Valider"))
-        self.pushButton_5.setText(_translate("Principal", "Ouvrir"))
+        self.menuFichier.setTitle(_translate("Principal", "Options"))
+        self.ouvrir_grille.setText(_translate("Principal", "Ouvrir une grille"))
+        self.enregistrer_grille.setText(_translate("Principal", "Enregistrer une grille"))
