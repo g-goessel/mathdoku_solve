@@ -33,18 +33,22 @@ class Ui_Principal(object):
 
         Principal.setObjectName("Principal")
         Principal.resize(largeur,longueur)
+        
         self.buttonBox = QtWidgets.QDialogButtonBox(Principal)
         self.buttonBox.setGeometry(QtCore.QRect(30, 140, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel)
         self.buttonBox.setObjectName("buttonBox")
-        i = 0
-        for checkBox in self.checkBox_dict:
-            self.checkBox = QtWidgets.QCheckBox(Principal)
-            self.checkBox.setGeometry(QtCore.QRect(*self.checkBox_dict[checkBox]))
-            self.checkBox.setText("")
-            self.checkBox.setObjectName("checkBox" + str(i))
-            i += 1
+        self.liste_check = []
+        for i in range(taille_grille):
+            liste_i = []
+            for j in range(taille_grille): 
+                self.checkBox= QtWidgets.QCheckBox(Principal)
+                self.checkBox.setGeometry(QtCore.QRect(*self.checkBox_dict[(i,j)]))
+                self.checkBox.setText("")
+                self.checkBox.setObjectName('checkBox' + str(i) + str(j))
+                liste_i.append(self.checkBox)
+            self.liste_check.append(liste_i)
         self.textEdit = QtWidgets.QTextEdit(Principal)
         self.textEdit.setGeometry(QtCore.QRect(largeur-270, 30, 104, 31))
         self.textEdit.setObjectName("textEdit")
