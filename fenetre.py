@@ -70,7 +70,6 @@ class FenetrePrincipal(QDialog):
         for element in range(1,len(dico)+1):
             valeur = dico[element][0]
             nbr_cases = len(dico[element][1])
-            print(nbr_cases)
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
             
         print(dico)
