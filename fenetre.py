@@ -4,6 +4,7 @@ import sys
 import pickle
 from t import *
 from t2 import *
+from fonctions import *
 
 class FenetrePrincipal(QDialog):
     global taille_grille
@@ -61,7 +62,18 @@ class FenetrePrincipal(QDialog):
         with open(nom_fichier, 'rb') as fichier:
             mon_depickler = pickle.Unpickler(fichier)
             dico = mon_depickler.load()
-        print(dico)
+        
+    def resolution(self):
+        global dico
+        global taille_grille
+        for element in range(1,len(dico)+1):
+            valeur = dico[element][0]
+            nbr_cases = len(dico[element])
+            print(valeur)
+            dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
+            print(dico[element])
+    
+    
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()

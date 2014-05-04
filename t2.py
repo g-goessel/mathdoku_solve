@@ -80,6 +80,7 @@ class Ui_Principal(object):
         self.ouvrir_grille.triggered.connect(Principal.ouvrir_grille)
         self.enregistrer_grille.triggered.connect(Principal.enregistrer_grille)
         self.pushButton_4.clicked.connect(Principal.domaine)
+        self.pushButton.clicked.connect(Principal.resolution)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
     def retranslateUi(self, Principal):
@@ -88,7 +89,7 @@ class Ui_Principal(object):
         
         _translate = QtCore.QCoreApplication.translate
         Principal.setWindowTitle(_translate("Principal", "Résolution du MathDoku de taille " + str(taille_grille) + 'x' + str(taille_grille)))
-        self.pushButton.setText(_translate("Principal", "Résoudre"))
+        self.pushButton.setText(_translate("Principal", "Résoudre !"))
         self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_4.setText(_translate("Principal", "Valider"))
         self.menuFichier.setTitle(_translate("Principal", "Options"))
