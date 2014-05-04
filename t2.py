@@ -67,6 +67,7 @@ class Ui_Principal(object):
 
         self.retranslateUi(Principal)
         self.pushButton_4.clicked.connect(Principal.domaine)
+        self.pushButton_3.clicked.connect(Principal.enregistrer_grille)
         self.buttonBox.rejected.connect(Principal.reject)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 

@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import *
 import sys
+import pickle
 from t import *
 from t2 import *
 
@@ -39,7 +40,15 @@ class FenetrePrincipal(QDialog):
         dico[reference] = liste
         print(dico[reference])
         reference += 1
-        
+    
+    def enregistrer_grille(self):
+        global dico
+        urlbis = QFileDialog.getSaveFileName(self, "Enregistrer une grille", '.', "Grille MathDoku(pas d'extension)")
+        url = urlbis[0]
+        nom_fichier = url.split("/")[6]
+        with open(nom_fichier, 'wb') as fichier:
+            mon_pickler = pickle.Pickler(fichier)
+            mon_pickler.dump(dico)
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()
