@@ -43,12 +43,25 @@ class FenetrePrincipal(QDialog):
     
     def enregistrer_grille(self):
         global dico
-        urlbis = QFileDialog.getSaveFileName(self, "Enregistrer une grille", '.', "Grille MathDoku(pas d'extension)")
+        urlbis = QFileDialog.getSaveFileName(self, "Enregistrer une grille", '.', "Grille MathDoku(*mtku)")
         url = urlbis[0]
-        nom_fichier = url.split("/")[6]
-        with open(nom_fichier, 'wb') as fichier:
+        split = url.split("/")
+        print(split)
+        nom_fichier = split[len(split)-1]
+        with open(nom_fichier + str('.mtku'), 'wb') as fichier:
             mon_pickler = pickle.Pickler(fichier)
             mon_pickler.dump(dico)
+
+    def ouvrir_grille(self):
+        global dico
+        urlbis = QFileDialog.getOpenFileName(self,"Ouvrir une grille", '.', "Grille MathDoku(*mtku)")
+        url = urlbis[0]
+        split = url.split("/")
+        nom_fichier = split[len(split)-1]
+        with open(nom_fichier, 'rb') as fichier:
+            mon_depickler = pickle.Unpickler(fichier)
+            dico = mon_depickler.load()
+        print(dico)
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()
