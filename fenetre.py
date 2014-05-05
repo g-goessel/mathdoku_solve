@@ -6,6 +6,8 @@ from t import *
 from t2 import *
 from fonctions import *
 from bruteforce import *
+
+
 class FenetrePrincipal(QDialog):
     global taille_grille
     global dico
@@ -35,6 +37,8 @@ class FenetrePrincipal(QDialog):
             for j in range(taille_grille[1]): 
                 checkBox = self.ui.liste_check[i][j]
                 if checkBox.isChecked():
+                    checkBox.setChecked(False)
+                    checkBox.setCheckable(False)
                     liste_coordonnees.append((i+1,j+1))
         liste.append(numero_domaine)
         liste.append(liste_coordonnees)
