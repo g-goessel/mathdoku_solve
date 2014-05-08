@@ -2,7 +2,7 @@
 fonctions 
 """
 
-from itertools import product
+from itertools import *
 from functools import reduce
 
 
@@ -16,24 +16,28 @@ def combi_possibles(val_tot,nbr_cases,nbr_max):
     
     combi=list()
     list_div=[i for i in range(1,nbr_max+1) if val_tot/i==int(val_tot/i)]
-    combi_max=list(product(list_div, repeat=nbr_cases))
+    combi_max=list(product([i for i in range(1,nbr_max+1)], repeat=nbr_cases))
+    combi_max_multipli=list(product(list_div, repeat=nbr_cases))
 
     if val_tot <= nbr_max**2:
         #on peut avoir une addition
-        for i in list(product([i for i in range(1,nbr_max+1)],repeat=nbr_cases)):
+        for i in combi_max:
             soustraction = reduce(lambda x,y: x-y, i)
             somme = sum(i)
             if somme == val_tot:
                 combi.append(i)
             if soustraction == val_tot:
-                combi.append(i)
+                for j in list(permutations(i)):
+                    combi.append(j)
 
     for i in combi_max:
-        produit = reduce(lambda x,y: x*y, i)
         division = reduce(lambda x,y: x/y, i)
-        if produit == val_tot:
-            combi.append(i)
         if division == val_tot:
+            combi.append(i)
+
+    for i in combi_max_multipli:
+        produit = reduce(lambda x,y: x*y, i)
+        if produit == val_tot:
             combi.append(i)
 
     return combi
