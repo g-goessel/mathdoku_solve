@@ -24,12 +24,15 @@ def combi_possibles(val_tot,nbr_cases,nbr_max):
         for i in combi_max:
             soustraction = reduce(lambda x,y: x-y, i)
             somme = sum(i)
+            division = reduce(lambda x,y: x/y, i)
             if somme == val_tot:
                 combi.append(i)
             if soustraction == val_tot:
                 for j in list(permutations(i)):
                     combi.append(j)
-
+            if division == val_tot:
+                for j in list(permutations(i)):
+                    combi.append(j)
     for i in combi_max:
         division = reduce(lambda x,y: x/y, i)
         if division == val_tot:
