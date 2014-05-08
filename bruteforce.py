@@ -41,7 +41,7 @@ def bruteforce(user_data,size):
             i=0
             while 1:
                 try:
-                    if compteur[sorted_blocs[i]][0]+1 < compteur[sorted_blocs[i]][1]:
+                    if compteur[sorted_blocs[i]][0]+1 <= compteur[sorted_blocs[i]][1]:
                         compteur[sorted_blocs[i]][0]+=1
                         #debugage : on print le compteur toutes les 10^5 itérations
                         if nbr_ite/(10**5)==nbr_ite//(10**5):
