@@ -78,6 +78,9 @@ class FenetrePrincipal(QDialog):
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
             
         print(dico)
+        optimize(dico)
+        optimize(dico)
+        optimize(dico)
         resultat=bruteforce(dico,taille_grille[1])
         print(resultat)    
     
