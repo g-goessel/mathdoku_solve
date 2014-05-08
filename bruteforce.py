@@ -28,7 +28,7 @@ def bruteforce(user_data,size):
         for bloc in user_data:
             i=0
             for case in user_data[bloc][1]:
-                to_test[case[0]-1][case[1]-1]=user_data[bloc][2][compteur[bloc][0]][i]
+                to_test[case[0]][case[1]]=user_data[bloc][2][compteur[bloc][0]][i]
                 i+=1
 
         #on test si cette grille est correcte

@@ -12,7 +12,7 @@ class FenetrePrincipal(QDialog):
     global taille_grille
     global dico
     global reference
-    reference = 1
+    reference = 0
     taille_grille=dict()
     dico = dict()
     def __init__(self,parametres ,parent=None):
@@ -39,7 +39,7 @@ class FenetrePrincipal(QDialog):
                 if checkBox.isChecked():
                     checkBox.setChecked(False)
                     checkBox.setCheckable(False)
-                    liste_coordonnees.append((i+1,j+1))
+                    liste_coordonnees.append((i,j))
         liste.append(numero_domaine)
         liste.append(liste_coordonnees)
         dico[reference] = liste
@@ -61,6 +61,7 @@ class FenetrePrincipal(QDialog):
         global dico
         urlbis = QFileDialog.getOpenFileName(self,"Ouvrir une grille", '.', "Grille MathDoku(*mtku)")
         url = urlbis[0]
+        print(url)
         split = url.split("/")
         nom_fichier = split[len(split)-1]
         with open(nom_fichier, 'rb') as fichier:
@@ -71,7 +72,7 @@ class FenetrePrincipal(QDialog):
     def resolution(self):
         global dico
         global taille_grille
-        for element in range(1,len(dico)+1):
+        for element in range(len(dico)):
             valeur = dico[element][0]
             nbr_cases = len(dico[element][1])
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
