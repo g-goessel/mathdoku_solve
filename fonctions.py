@@ -33,11 +33,6 @@ def combi_possibles(val_tot,nbr_cases,nbr_max):
             if division == val_tot:
                 for j in list(permutations(i)):
                     combi.append(j)
-    for i in combi_max:
-        division = reduce(lambda x,y: x/y, i)
-        if division == val_tot:
-            for j in list(permutations(i)):
-                combi.append(j)
 
     for i in combi_max_multipli:
         produit = reduce(lambda x,y: x*y, i)
