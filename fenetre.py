@@ -6,15 +6,17 @@ from t import *
 from t2 import *
 from fonctions import *
 from bruteforce import *
-
+from t3 import *
 
 class FenetrePrincipal(QDialog):
     global taille_grille
     global dico
     global reference
+    global resultat
     reference = 0
     taille_grille=dict()
     dico = dict()
+    resultat = dict()
     def __init__(self,parametres ,parent=None):
         global taille_grille
         taille_grille=parametres
@@ -73,15 +75,26 @@ class FenetrePrincipal(QDialog):
     def resolution(self):
         global dico
         global taille_grille
+        global resultat
         for element in range(len(dico)):
             valeur = dico[element][0]
             nbr_cases = len(dico[element][1])
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
             
         print(dico)
+        optimize(dico)
+        optimize(dico)
+        optimize(dico)
         resultat=bruteforce(dico,taille_grille[1])
+        if resultat != (False,'Pas de solution touvée') :
+            self.afficher_resultat()
         print(resultat)    
-    
+
+    def afficher_resultat(self):
+        global taille_grille  
+        global resultat
+        self.screen3 = Resultat(taille_grille, resultat)
+        self.screen3.show()    
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()
@@ -102,7 +115,28 @@ class MathDoku(QDialog):
         self.close()
         self.screen2 = FenetrePrincipal(self.taille_grille)
         self.screen2.show()
-		
+
+class Resultat(QDialog):
+    global taille_grille
+    global resultat
+    
+    taille_grille = dict()
+    resultat = dict()
+    
+    def __init__(self,taille, result ,parent=None):
+        global taille_grille
+        global resultat
+        taille_grille= taille
+        resultat = result
+        super(Resultat, self).__init__(parent)
+        self.createWidgets()
+
+    def createWidgets(self):
+        global taille_grille
+        global resultat
+        self.ui = Ui_Resultat(taille_grille, resultat)
+        self.ui.setupUi(self)
+
 if __name__=='__main__':    
  
     app = QApplication(sys.argv)
