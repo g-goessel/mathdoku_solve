@@ -8,7 +8,7 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import fenetre
+from fenetre import *
 
 class Ui_Principal(object):
 

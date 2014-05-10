@@ -99,3 +99,22 @@ def optimize(user_data):
                             del(user_data[bloc_to_clean][2][i])
 
     return user_data
+
+
+    """
+    On efface des combinaisons qui ne sont pas possibles car le meme chiffre apparait plusieurs fois sur la meme ligne/colonne
+    """
+
+    """
+    WIP
+
+    for bloc in user_data:
+        #Dans chaque bloc on liste tous les emplacements qui ne peuvent cohexister
+        emplacements=[]
+        liste_x=[i[0] for i in bloc[1]]
+        liste_x_small=list(set(liste_x))
+        for i in liste_x_small:
+
+
+        liste_y=[i[1] for i in bloc[1]]
+    """
