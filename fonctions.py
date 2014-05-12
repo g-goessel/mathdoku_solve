@@ -98,23 +98,32 @@ def optimize(user_data):
                             print('removed ',user_data[bloc_to_clean][2][i],'from ',bloc_to_clean)
                             del(user_data[bloc_to_clean][2][i])
 
-    return user_data
-
 
     """
     On efface des combinaisons qui ne sont pas possibles car le meme chiffre apparait plusieurs fois sur la meme ligne/colonne
     """
-
-    """
-    WIP
-
     for bloc in user_data:
         #Dans chaque bloc on liste tous les emplacements qui ne peuvent cohexister
         emplacements=[]
-        liste_x=[i[0] for i in bloc[1]]
+
+        liste_x=[i[0] for i in user_data[bloc][1]]
         liste_x_small=list(set(liste_x))
-        for i in liste_x_small:
+        for x in liste_x_small:
+            if liste_x.count(x)>1:
+                emplacements.append([i for i,j in enumerate(liste_x) if j == x])
+
+        liste_y=[i[1] for i in user_data[bloc][1]]
+        liste_y_small=list(set(liste_y))
+        for y in liste_y_small:
+            if liste_y.count(y)>1:
+                emplacements.append([i for i,j in enumerate(liste_y) if j == y])
+
+        #Ensuite on élimine les combinaisons qui ne respectent pas ce critère
+        for key,combinaison in enumerate(user_data[bloc][2]):
+            for combinaison_limitante in emplacements:
+                coord_interessantes=[combinaison[i] for i in list(combinaison_limitante)]
+                if len(coord_interessantes)!=len(set(coord_interessantes)):
+                    print('poped ',user_data[bloc][2].pop(key))
 
 
-        liste_y=[i[1] for i in bloc[1]]
-    """
+    return user_data

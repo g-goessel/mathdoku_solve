@@ -137,6 +137,7 @@ class Resultat(QDialog):
         self.ui = Ui_Resultat(taille_grille, resultat)
         self.ui.setupUi(self)
 
+
 if __name__=='__main__':    
  
     app = QApplication(sys.argv)

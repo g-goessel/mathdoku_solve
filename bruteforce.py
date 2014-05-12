@@ -23,7 +23,7 @@ def bruteforce(user_data,size):
 
     while 1:
         #on passe aux choses sérieuses : le remplissage de la grille to_test
-        to_test=list(gen_grille)
+        to_test = list(gen_grille)
 
         for bloc in user_data:
             i=0
