@@ -1,8 +1,8 @@
 # Fichier contenant le bruteforce
 
-#from numpy import array
 from fonctions import *
 from time import time
+import numpy as np
 
 def bruteforce(user_data,size):
     '''
@@ -16,40 +16,52 @@ def bruteforce(user_data,size):
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
     sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
+    print('sorted : ',sorted_blocs)
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
-    compteur={ i:[0,len(user_data[i][2])-1] for i in user_data}
-    gen_grille=[[0 for i in range(size)] for j in range(size)]
+    compteur={x:[0,len(user_data[i][2])] for x,i in enumerate(sorted_blocs)}
 
-    while 1:
-        #on passe aux choses sérieuses : le remplissage de la grille to_test
-        to_test = list(gen_grille)
+    #la variable scope va faire référence à la position du bloc dans le compteur où nous sommes actuellement
+    scope=0
 
-        for bloc in user_data:
-            i=0
-            for case in user_data[bloc][1]:
-                to_test[case[0]][case[1]]=user_data[bloc][2][compteur[bloc][0]][i]
-                i+=1
+    to_test = np.zeros((size,size), dtype=np.int8)
 
-        #on test si cette grille est correcte
-        if  bonoupas(to_test)==True:
-            t_end=time()
-            return to_test,nbr_ite,t_end-t_start
-            break
-        else : 
-            #sinon on passe à la combinaison suivante
-            i=0
+    while scope <= len(user_data):
+        bloc_de_test=user_data[sorted_blocs[scope]]
+        #print(bloc_de_test)
+        test=test_insertion(bloc_de_test[1],bloc_de_test[2][compteur[scope][0]],np.copy(to_test),size)
+        #print(test)
+
+        if test:
+            scope+=1
+            to_test=test[1]
+        else:
+            #on passe a la combinaison suivante
             while 1:
-                try:
-                    if compteur[sorted_blocs[i]][0]+1 <= compteur[sorted_blocs[i]][1]:
-                        compteur[sorted_blocs[i]][0]+=1
-                        #debugage : on print le compteur toutes les 10^5 itérations
-                        if nbr_ite/(10**5)==nbr_ite//(10**5):
-                            print([compteur[i] for i in sorted_blocs])
-                        break
-                    else:
-                        compteur[sorted_blocs[i]][0]=0
-                        i+=1
-                except :
-                    return (False,'Pas de solution touvée')
+                if compteur[scope][0] >= compteur[scope][1]:
+                    compteur[scope][0] = 0
+                    if scope > 0 :
+                        scope -= 1
+                    else : 
+                        return (False,'Pas de solution touvée')
+                else:
+                    compteur[scope][0] += 1
+                    break
         nbr_ite+=1
+
+        if not nbr_ite%10000:
+            print(compteur)
+
+
+
+def test_insertion(coordonnees,valeurs,matrice,size):
+    """on test si le bloc peut rentrer dans la matrice"""
+
+    #on rempli la matrice avec ce bloc
+    for x,coord in enumerate(coordonnees):
+        matrice[coord]=valeurs[x]
+        #on test si il n'y a pas de contradiction
+        for i in range(size):
+            if matrice[coord[0],i] == valeurs[x] and i!=coord[1]: return False
+            if matrice[i,coord[1]] == valeurs[x] and i!=coord[0]: return False
+    return True,matrice
