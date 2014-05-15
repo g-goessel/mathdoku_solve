@@ -15,12 +15,11 @@ def bruteforce(user_data,size):
     nbr_ite=0
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
-    sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
+    sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]))
     print('sorted : ',sorted_blocs)
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
-    compteur={x:[0,len(user_data[i][2])] for x,i in enumerate(sorted_blocs)}
-
+    compteur={x:[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)}
     #la variable scope va faire référence à la position du bloc dans le compteur où nous sommes actuellement
     scope=0
 
@@ -38,15 +37,17 @@ def bruteforce(user_data,size):
         else:
             #on passe a la combinaison suivante
             while 1:
-                if compteur[scope][0] >= compteur[scope][1]:
+                if compteur[scope][0] == compteur[scope][1]:
                     compteur[scope][0] = 0
-                    if scope > 0 :
+                    if scope >0 :
                         scope -= 1
-                    else : 
+                    else :
                         return (False,'Pas de solution touvée')
                 else:
                     compteur[scope][0] += 1
                     break
+
+            print(compteur,scope)
         nbr_ite+=1
 
         if not nbr_ite%10000:
