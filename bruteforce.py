@@ -29,7 +29,7 @@ def bruteforce(user_data,size):
     while 1:
         bloc_de_test=user_data[sorted_blocs[scope]]
         #print(bloc_de_test)
-        test=test_insertion(bloc_de_test[1],bloc_de_test[2][compteur[scope][0]],np.copy(to_test),size)
+        test=test_ajout(bloc_de_test[1],bloc_de_test[2][compteur[scope][0]],np.copy(to_test),size)
         #print(test)
 
         if test and scope==nbr_blocs-1:
@@ -59,7 +59,7 @@ def bruteforce(user_data,size):
 
 
 
-def test_insertion(coordonnees,valeurs,matrice,size):
+def test_ajout(coordonnees,valeurs,matrice,size):
     """on test si le bloc peut rentrer dans la matrice"""
 
     #on rempli la matrice avec ce bloc
