@@ -4,6 +4,7 @@ fonctions
 
 from itertools import *
 from functools import reduce
+import numpy as np
 
 
 def combi_possibles(val_tot,nbr_cases,nbr_max):
@@ -55,7 +56,7 @@ def bonoupas(matrice):
         for j_ref in range(size):
             #On vérifie l'unicité sur la colonne
             for i in range(size):
-                if matrice[i][j_ref]==matrice[i_ref][j_ref] and i != i_ref: return False
+                if (matrice[i][j_ref]==matrice[i_ref][j_ref] and i != i_ref) and matrice[i][j_ref]!=0: return False
 
             #Puis sur la ligne
             for j in range(size):

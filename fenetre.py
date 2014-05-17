@@ -22,7 +22,7 @@ class FenetrePrincipal(QDialog):
         taille_grille=parametres
         super(FenetrePrincipal, self).__init__(parent)
         self.createWidgets()
- 
+
     def createWidgets(self):
         global taille_grille
         self.ui = Ui_Principal(taille_grille)
@@ -36,19 +36,19 @@ class FenetrePrincipal(QDialog):
         liste = []
         numero_domaine = int(self.ui.textEdit.toPlainText())
         for i in range(taille_grille[1]):
-            for j in range(taille_grille[1]): 
+            for j in range(taille_grille[1]):
                 checkBox = self.ui.liste_check[i][j]
                 if checkBox.isChecked():
                     checkBox.setChecked(False)
                     checkBox.setCheckable(False)
                     checkBox.hide()
-                    liste_coordonnees.append((i,j))
+                    liste_coordonnees.append((j,i))
         liste.append(numero_domaine)
         liste.append(liste_coordonnees)
         dico[reference] = liste
         print(dico[reference])
         reference += 1
-    
+
     def enregistrer_grille(self):
         global dico
         urlbis = QFileDialog.getSaveFileName(self, "Enregistrer une grille", '.', "Grille MathDoku(*mtku)")
@@ -71,7 +71,7 @@ class FenetrePrincipal(QDialog):
             mon_depickler = pickle.Unpickler(fichier)
             dico = mon_depickler.load()
         print(dico)
-        
+
     def resolution(self):
         global dico
         global taille_grille
@@ -80,24 +80,23 @@ class FenetrePrincipal(QDialog):
             valeur = dico[element][0]
             nbr_cases = len(dico[element][1])
             dico[element].append(combi_possibles(valeur,nbr_cases,taille_grille[1]))
-            
+
         print(dico)
         optimize(dico)
         optimize(dico)
         optimize(dico)
         resultat=bruteforce(dico,taille_grille[1])
-        if resultat != (False,'Pas de solution touvée') :
+        if resultat[0] :
             self.afficher_resultat()
-        print(resultat)    
-    
+        print(resultat)
+
     def effacer(self):
         self.afficher_resultat()
-        
     def afficher_resultat(self):
-        global taille_grille  
+        global taille_grille
         global resultat
         self.screen3 = Resultat(taille_grille, resultat)
-        self.screen3.show()    
+        self.screen3.show()
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()
@@ -105,7 +104,7 @@ class MathDoku(QDialog):
     def __init__(self, parent=None):
         super(MathDoku, self).__init__(parent)
         self.createWidgets()
- 
+
     def createWidgets(self):
         self.ui = Ui_MathDoku()
         self.ui.setupUi(self)
@@ -113,7 +112,7 @@ class MathDoku(QDialog):
     def export_taille(self,x):
         #global taille_grille
         self.taille_grille[1] = x
-    
+
     def clique_ok(self):
         self.close()
         self.screen2 = FenetrePrincipal(self.taille_grille)
@@ -122,10 +121,10 @@ class MathDoku(QDialog):
 class Resultat(QDialog):
     global taille_grille
     global resultat
-    
+
     taille_grille = dict()
     resultat = dict()
-    
+
     def __init__(self,taille, result ,parent=None):
         global taille_grille
         global resultat
@@ -141,12 +140,11 @@ class Resultat(QDialog):
         self.ui.setupUi(self)
 
 
-if __name__=='__main__':    
- 
+if __name__=='__main__':
+
     app = QApplication(sys.argv)
- 
+
     screen = MathDoku()
     screen.show()
 
     app.exec_()
-    
