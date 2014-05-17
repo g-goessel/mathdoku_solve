@@ -25,7 +25,7 @@ def bruteforce(user_data,size):
 
     nbr_blocs=len(user_data)
 
-    to_test = np.zeros((size,size))
+    to_test = np.zeros((size,size),int)
 
     while 1:
         bloc_de_test=user_data[sorted_blocs[scope]]
@@ -50,6 +50,7 @@ def bruteforce(user_data,size):
                     compteur[scope][0] += 1
                     break
         nbr_ite+=1
+        print(compteur)
 
         # if not nbr_ite%10000:
         #     print(compteur)
@@ -61,14 +62,17 @@ def test_ajout(coordonnees,valeurs,matrice,size):
 
     #on rempli la matrice avec ce bloc
     for x,coord in enumerate(coordonnees):
-        matrice[coord[1],coord[0]]=valeurs[x]
-        #on test si il n'y a pas de contradiction
-        for i in range(size):
-            if matrice[coord[1],i] == valeurs[x] and i!=coord[0]:
-                print('wrong ! ',matrice)
-                return False
-            if matrice[i,coord[0]] == valeurs[x] and i!=coord[1]:
-                print('wrong ! ',matrice)
-                return False
-    print('true ! ',matrice)
+        matrice[coord[0],coord[1]]=valeurs[x]
+    #on test si il n'y a pas de contradiction
+    for x in range(size):
+        for y in range(size):
+            valeur=matrice[x,y]
+            if valeur!=0:
+                if valeur in [matrice[x,i] for i in range(size) if i!=y]:
+                    print('wrong ! ','\n',matrice)
+                    return False
+                if valeur in [matrice[i,y] for i in range(size) if i!=x]:
+                    print('wrong ! ','\n',matrice)
+                    return False
+    print('true ! ','\n',matrice)
     return True,matrice
