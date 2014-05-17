@@ -89,7 +89,10 @@ class FenetrePrincipal(QDialog):
         if resultat != (False,'Pas de solution touvée') :
             self.afficher_resultat()
         print(resultat)    
-
+    
+    def effacer(self):
+        self.afficher_resultat()
+        
     def afficher_resultat(self):
         global taille_grille  
         global resultat

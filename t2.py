@@ -79,6 +79,7 @@ class Ui_Principal(object):
         self.retranslateUi(Principal)
         self.ouvrir_grille.triggered.connect(Principal.ouvrir_grille)
         self.enregistrer_grille.triggered.connect(Principal.enregistrer_grille)
+        self.pushButton_2.clicked.connect(Principal.effacer)
         self.pushButton_4.clicked.connect(Principal.domaine)
         self.pushButton.clicked.connect(Principal.resolution)
         QtCore.QMetaObject.connectSlotsByName(Principal)
