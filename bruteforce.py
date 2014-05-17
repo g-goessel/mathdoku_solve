@@ -15,7 +15,8 @@ def bruteforce(user_data,size):
     nbr_ite=0
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
-    sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
+    sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]))
+    print(sorted_blocs)
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
     compteur=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)]
@@ -28,13 +29,11 @@ def bruteforce(user_data,size):
 
     while 1:
         bloc_de_test=user_data[sorted_blocs[scope]]
-        #print(bloc_de_test)
-        test=test_ajout(bloc_de_test[1],bloc_de_test[2][compteur[scope][0]],np.copy(to_test),size)
-        #print(test)
+
+        test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]], np.copy(to_test), size)
 
         if test and scope==nbr_blocs-1:
             return True,test[1]
-            break
         elif test:
             scope+=1
             to_test=test[1]
@@ -50,12 +49,10 @@ def bruteforce(user_data,size):
                 else:
                     compteur[scope][0] += 1
                     break
-
-            print(compteur,scope)
         nbr_ite+=1
 
-        if not nbr_ite%10000:
-            print(compteur)
+        # if not nbr_ite%10000:
+        #     print(compteur)
 
 
 
@@ -64,9 +61,14 @@ def test_ajout(coordonnees,valeurs,matrice,size):
 
     #on rempli la matrice avec ce bloc
     for x,coord in enumerate(coordonnees):
-        matrice[coord]=valeurs[x]
+        matrice[coord[1],coord[0]]=valeurs[x]
         #on test si il n'y a pas de contradiction
         for i in range(size):
-            if matrice[coord[0],i] == valeurs[x] and i!=coord[1]: return False
-            if matrice[i,coord[1]] == valeurs[x] and i!=coord[0]: return False
+            if matrice[coord[1],i] == valeurs[x] and i!=coord[0]:
+                print('wrong ! ',matrice)
+                return False
+            if matrice[i,coord[0]] == valeurs[x] and i!=coord[1]:
+                print('wrong ! ',matrice)
+                return False
+    print('true ! ',matrice)
     return True,matrice
