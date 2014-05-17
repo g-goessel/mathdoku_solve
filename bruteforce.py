@@ -2,7 +2,6 @@
 
 from fonctions import *
 from time import time
-import numpy as np
 
 def bruteforce(user_data,size):
     '''
@@ -25,7 +24,7 @@ def bruteforce(user_data,size):
 
     nbr_blocs=len(user_data)
 
-    to_test = np.zeros((size,size),int)
+    to_test = [[0 for i in range(size)] for j in range(size)]
 
     while 1:
         bloc_de_test=user_data[sorted_blocs[scope]]
@@ -63,16 +62,16 @@ def test_ajout(coordonnees,valeurs,matrice,size):
 
     #on rempli la matrice avec ce bloc
     for x,coord in enumerate(coordonnees):
-        matrice[coord]=valeurs[x]
+        matrice[coord[1]][coord[0]]=valeurs[x]
     #on test si il n'y a pas de contradiction
     for x in range(size):
         for y in range(size):
-            valeur=matrice[x,y]
+            valeur=matrice[x][y]
             if valeur!=0:
-                if valeur in [matrice[x,i] for i in range(size) if i!=y]:
+                if valeur in [matrice[x][i] for i in range(size) if i!=y]:
                     nettoyage_matrice(matrice,coordonnees)
                     return False
-                if valeur in [matrice[i,y] for i in range(size) if i!=x]:
+                if valeur in [matrice[i][y] for i in range(size) if i!=x]:
                     nettoyage_matrice(matrice,coordonnees)
                     return False
     return True,matrice
@@ -82,4 +81,4 @@ def nettoyage_matrice(to_clean,coords):
     Va nettoyer la matrice to_clean des coordonnées coords
     """
     for coord in coords:
-        to_clean[coord]=0
+        to_clean[coord[1]][coord[0]]=0
