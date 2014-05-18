@@ -1,5 +1,5 @@
 # Fichier contenant le bruteforce
-
+from multiprocessing import *
 from fonctions import *
 from time import time
 
@@ -8,17 +8,31 @@ def bruteforce(user_data,size):
     Cette fonction va résoudre la grille en utilisant une technique de bruteforce
     On va itérer par ordre croissant de possibilités
     '''
+    global t_start
     t_start=time()
 
-    #compteur global du nombre d'itération
-    nbr_ite=0
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
+    sorted_blocs_reversed=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
     sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]))
     print(sorted_blocs)
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
     compteur=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)]
+    user_data_reverse={i:[user_data[i][0],user_data[i][1],list(reversed(user_data[i][2]))] for i in user_data}
+    arg_list=[(user_data,sorted_blocs,compteur,size), (user_data,sorted_blocs,compteur,size)]
+
+    with Pool() as pool:
+        for i,x in enumerate(pool.starmap(worker,arg_list)):
+            if x :
+                print(i,' found the answer')
+                return x
+
+def worker(user_data,sorted_blocs,compteur,size):
+
+    #compteur global du nombre d'itération
+    nbr_ite=0
+
     #la variable scope va faire référence à la position du bloc dans le compteur où nous sommes actuellement
     scope=0
 
@@ -32,6 +46,7 @@ def bruteforce(user_data,size):
         test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]],to_test, size)
 
         if test and scope==nbr_blocs-1:
+            global t_start
             t_end=time()
             return True,to_test,nbr_ite,t_end-t_start
         elif test:
@@ -54,8 +69,6 @@ def bruteforce(user_data,size):
 
         if not nbr_ite%50000:
             print(compteur)
-
-
 
 def test_ajout(coordonnees,valeurs,matrice,size):
     """on test si le bloc peut rentrer dans la matrice"""
