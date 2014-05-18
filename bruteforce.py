@@ -17,13 +17,15 @@ def bruteforce(user_data,size):
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
     compteur=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)]
+    compteur_reversed=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs_reversed)]
 
-    user_data_reverse={i:[user_data[i][0],user_data[i][1],list(reversed(user_data[i][2]))] for i in user_data}
+
+    user_data_reversed={i:[user_data[i][0],user_data[i][1],list(reversed(user_data[i][2]))] for i in user_data}
 
     arg_list=[(user_data,sorted_blocs,compteur,size), (user_data,sorted_blocs,compteur,size)]
 
-    with ProcessPoolExecutor(max_workers=2) as executor:
-        futures=[executor.submit(worker,user_data,sorted_blocs,compteur,size),executor.submit(worker,user_data,sorted_blocs,compteur,size)]
+    with ProcessPoolExecutor() as executor:
+        futures=[executor.submit(worker,user_data,sorted_blocs,compteur,size),executor.submit(worker,user_data_reversed,sorted_blocs,compteur,size)]
         results=wait(futures,return_when=FIRST_COMPLETED)
         retour=list(results.done)[0].result()
         return retour
