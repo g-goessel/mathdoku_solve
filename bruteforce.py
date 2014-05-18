@@ -1,5 +1,5 @@
 # Fichier contenant le bruteforce
-from concurrent.futures import *
+from concurrent.futures import ProcessPoolExecutor, wait, FIRST_COMPLETED
 from fonctions import *
 from time import time
 

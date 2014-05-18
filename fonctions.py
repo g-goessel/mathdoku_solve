@@ -2,7 +2,7 @@
 fonctions
 """
 
-from itertools import *
+from itertools import permutations, product
 from functools import reduce
 import numpy as np
 
