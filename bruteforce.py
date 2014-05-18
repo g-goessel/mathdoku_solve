@@ -1,5 +1,5 @@
 # Fichier contenant le bruteforce
-from multiprocessing import *
+from concurrent.futures import *
 from fonctions import *
 from time import time
 
@@ -11,25 +11,25 @@ def bruteforce(user_data,size):
     global t_start
     t_start=time()
 
-
     #classement des blocs bar ordre décroissant de combinaisons possibles
     sorted_blocs_reversed=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
     sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]))
-    print(sorted_blocs)
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
     compteur=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)]
+
     user_data_reverse={i:[user_data[i][0],user_data[i][1],list(reversed(user_data[i][2]))] for i in user_data}
+
     arg_list=[(user_data,sorted_blocs,compteur,size), (user_data,sorted_blocs,compteur,size)]
 
-    with Pool() as pool:
-        for i,x in enumerate(pool.starmap(worker,arg_list)):
-            if x :
-                print(i,' found the answer')
-                return x
+    with ProcessPoolExecutor(max_workers=2) as executor:
+        futures=[executor.submit(worker,user_data,sorted_blocs,compteur,size),executor.submit(worker,user_data,sorted_blocs,compteur,size)]
+        results=wait(futures,return_when=FIRST_COMPLETED)
+        retour=list(results.done)[0].result()
+        return retour
 
 def worker(user_data,sorted_blocs,compteur,size):
-
+    print('worker started')
     #compteur global du nombre d'itération
     nbr_ite=0
 
@@ -44,24 +44,24 @@ def worker(user_data,sorted_blocs,compteur,size):
         bloc_de_test=user_data[sorted_blocs[scope]]
 
         test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]],to_test, size)
-
         if test and scope==nbr_blocs-1:
             global t_start
             t_end=time()
-            return True,to_test,nbr_ite,t_end-t_start
+            return True,test[1],nbr_ite,t_end-t_start
         elif test:
             #on a trouvé une combinaison convenable, on passe au bloc suivant
+            to_test=test[1]
             scope+=1
         else:
             #on passe a la combinaison suivante
             while 1:
                 if compteur[scope][0] == compteur[scope][1]:
-                    nettoyage_matrice(to_test,user_data[sorted_blocs[scope]][1])
+                    to_test=nettoyage_matrice(to_test,user_data[sorted_blocs[scope]][1])
                     compteur[scope][0] = 0
                     if scope >0 :
                         scope -= 1
                     else :
-                        return (False,'Pas de solution touvée')
+                        return False,nbr_ite
                 else:
                     compteur[scope][0] += 1
                     break
@@ -95,3 +95,5 @@ def nettoyage_matrice(to_clean,coords):
     """
     for coord in coords:
         to_clean[coord[1]][coord[0]]=0
+
+    return to_clean

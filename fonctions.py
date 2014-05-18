@@ -1,5 +1,5 @@
 """
-fonctions 
+fonctions
 """
 
 from itertools import *
@@ -14,7 +14,7 @@ def combi_possibles(val_tot,nbr_cases,nbr_max):
     #test si la valeur est certaine
     if nbr_cases==1:
         return [(val_tot,)]
-    
+
     combi=list()
     list_div=[i for i in range(1,nbr_max+1) if val_tot/i==int(val_tot/i)]
     combi_max=list(product([i for i in range(1,nbr_max+1)], repeat=nbr_cases))
@@ -64,7 +64,7 @@ def bonoupas(matrice):
 
 
     return True
-    
+
 
 # Optimisations diverses
 
@@ -95,8 +95,7 @@ def optimize(user_data):
                 cases_to_clean=[i for i,x in enumerate(user_data[bloc_to_clean][1]) if x[0]==coord_bloc_solo[0] or x[1]==coord_bloc_solo[1]]
                 for case_to_clean in cases_to_clean:
                     for i,coord in enumerate(user_data[bloc_to_clean][2]):
-                        if user_data[bloc_to_clean][2][i][case_to_clean] == user_data[bloc_solo][0]: 
-                            print('removed ',user_data[bloc_to_clean][2][i],'from ',bloc_to_clean)
+                        if user_data[bloc_to_clean][2][i][case_to_clean] == user_data[bloc_solo][0]:
                             del(user_data[bloc_to_clean][2][i])
 
 
@@ -109,22 +108,22 @@ def optimize(user_data):
 
         liste_x=[i[0] for i in user_data[bloc][1]]
         liste_x_small=list(set(liste_x))
-        for x in liste_x_small:
+        for key,x in enumerate(liste_x_small):
             if liste_x.count(x)>1:
-                emplacements.append([i for i,j in enumerate(liste_x) if j == x])
+                emplacements.append([i for i,j in enumerate(liste_x) if j == x and i != key])
 
         liste_y=[i[1] for i in user_data[bloc][1]]
         liste_y_small=list(set(liste_y))
-        for y in liste_y_small:
+        for key,y in enumerate(liste_y_small):
             if liste_y.count(y)>1:
-                emplacements.append([i for i,j in enumerate(liste_y) if j == y])
+                emplacements.append([i for i,j in enumerate(liste_y) if j == y and i != key])
 
         #Ensuite on élimine les combinaisons qui ne respectent pas ce critère
         for key,combinaison in enumerate(user_data[bloc][2]):
             for combinaison_limitante in emplacements:
                 coord_interessantes=[combinaison[i] for i in list(combinaison_limitante)]
                 if len(coord_interessantes)!=len(set(coord_interessantes)):
-                    print('poped ',user_data[bloc][2].pop(key))
+                    user_data[bloc][2].pop(key)
 
 
     return user_data
