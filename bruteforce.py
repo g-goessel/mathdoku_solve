@@ -8,7 +8,7 @@ def bruteforce(user_data,size):
     Cette fonction va résoudre la grille en utilisant une technique de bruteforce
     On va itérer par ordre croissant de possibilités
     '''
-    global t_start
+
     t_start=time()
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
@@ -28,7 +28,8 @@ def bruteforce(user_data,size):
         futures=[executor.submit(worker,user_data,sorted_blocs,compteur,size),executor.submit(worker,user_data_reversed,sorted_blocs,compteur,size)]
         results=wait(futures,return_when=FIRST_COMPLETED)
         retour=list(results.done)[0].result()
-        return retour
+        if retour:
+            return retour[0],retour[1],retour[2],retour[3]-t_start
 
 def worker(user_data,sorted_blocs,compteur,size):
     print('worker started')
@@ -47,9 +48,8 @@ def worker(user_data,sorted_blocs,compteur,size):
 
         test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]],to_test, size)
         if test and scope==nbr_blocs-1:
-            global t_start
             t_end=time()
-            return True,test[1],nbr_ite,t_end-t_start
+            return True,test[1],nbr_ite,t_end
         elif test:
             #on a trouvé une combinaison convenable, on passe au bloc suivant
             to_test=test[1]
@@ -63,7 +63,7 @@ def worker(user_data,sorted_blocs,compteur,size):
                     if scope >0 :
                         scope -= 1
                     else :
-                        return False,nbr_ite
+                        return False
                 else:
                     compteur[scope][0] += 1
                     break
