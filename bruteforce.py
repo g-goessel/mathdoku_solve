@@ -1,5 +1,5 @@
 # Fichier contenant le bruteforce
-from concurrent.futures import ProcessPoolExecutor, wait, FIRST_COMPLETED
+from concurrent.futures import *
 from fonctions import *
 from time import time
 
@@ -25,14 +25,21 @@ def bruteforce(user_data,size):
     arg_list=[(user_data,sorted_blocs,compteur,size), (user_data,sorted_blocs,compteur,size)]
 
     with ProcessPoolExecutor() as executor:
-        futures=[executor.submit(worker,user_data,sorted_blocs,compteur,size),executor.submit(worker,user_data_reversed,sorted_blocs,compteur,size)]
+        futures=[executor.submit(worker,user_data_reversed,sorted_blocs,compteur,size,'reversed'),executor.submit(worker,user_data,sorted_blocs,compteur,size,'ordered')]
         results=wait(futures,return_when=FIRST_COMPLETED)
+        executor.shutdown()
+        print(results)
+        print([list(i.result()) for i in results.done])
         retour=list(results.done)[0].result()
         if retour:
-            return retour[0],retour[1],retour[2],retour[3]-t_start
+            return retour[0],retour[1],retour[2],retour[3]-t_start,retour[4]
 
-def worker(user_data,sorted_blocs,compteur,size):
-    print('worker started')
+def worker(user_data,sorted_blocs,compteur,size,description):
+    """
+    Ce worker va se charger d'effectuer les tests sur les combinaisons et dans l'ordre donné
+    'description' sert à identifier le worker qui a trouvé la solution
+    """
+    print('worker ',description,' started')
     #compteur global du nombre d'itération
     nbr_ite=0
 
@@ -49,7 +56,8 @@ def worker(user_data,sorted_blocs,compteur,size):
         test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]],to_test, size)
         if test and scope==nbr_blocs-1:
             t_end=time()
-            return True,test[1],nbr_ite,t_end
+            print('the solution was found by the',description,'worker at',t_end)
+            return True,test[1],nbr_ite,t_end,description
         elif test:
             #on a trouvé une combinaison convenable, on passe au bloc suivant
             to_test=test[1]
