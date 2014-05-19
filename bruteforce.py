@@ -1,4 +1,8 @@
 # Fichier contenant le bruteforce
+<<<<<<< HEAD
+=======
+from concurrent.futures import *
+>>>>>>> a5dc96e... Tried to improve the mutli core algorithm
 from fonctions import *
 from time import time
 
