@@ -1,5 +1,4 @@
 # Fichier contenant le bruteforce
-from concurrent.futures import *
 from fonctions import *
 from time import time
 
@@ -12,34 +11,11 @@ def bruteforce(user_data,size):
     t_start=time()
 
     #classement des blocs bar ordre décroissant de combinaisons possibles
-    sorted_blocs_reversed=sorted(user_data, key=lambda x : len(user_data[x][2]),reverse=True)
     sorted_blocs=sorted(user_data, key=lambda x : len(user_data[x][2]))
 
     #compteur des itérations de la forme {1:[ite en cours, nbr max d'ite], 2: ...}
     compteur=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs)]
-    compteur_reversed=[[0,len(user_data[i][2])-1] for x,i in enumerate(sorted_blocs_reversed)]
 
-
-    user_data_reversed={i:[user_data[i][0],user_data[i][1],list(reversed(user_data[i][2]))] for i in user_data}
-
-    arg_list=[(user_data,sorted_blocs,compteur,size), (user_data,sorted_blocs,compteur,size)]
-
-    with ProcessPoolExecutor() as executor:
-        futures=[executor.submit(worker,user_data_reversed,sorted_blocs,compteur,size,'reversed'),executor.submit(worker,user_data,sorted_blocs,compteur,size,'ordered')]
-        results=wait(futures,return_when=FIRST_COMPLETED)
-        executor.shutdown()
-        print(results)
-        print([list(i.result()) for i in results.done])
-        retour=list(results.done)[0].result()
-        if retour:
-            return retour[0],retour[1],retour[2],retour[3]-t_start,retour[4]
-
-def worker(user_data,sorted_blocs,compteur,size,description):
-    """
-    Ce worker va se charger d'effectuer les tests sur les combinaisons et dans l'ordre donné
-    'description' sert à identifier le worker qui a trouvé la solution
-    """
-    print('worker ',description,' started')
     #compteur global du nombre d'itération
     nbr_ite=0
 
@@ -56,8 +32,7 @@ def worker(user_data,sorted_blocs,compteur,size,description):
         test=test_ajout(bloc_de_test[1], bloc_de_test[2][compteur[scope][0]],to_test, size)
         if test and scope==nbr_blocs-1:
             t_end=time()
-            print('the solution was found by the',description,'worker at',t_end)
-            return True,test[1],nbr_ite,t_end,description
+            return True,test[1],nbr_ite,t_end-t_start
         elif test:
             #on a trouvé une combinaison convenable, on passe au bloc suivant
             to_test=test[1]
