@@ -18,7 +18,7 @@ class Ui_Principal(object):
 
     def setupUi(self, Principal):
         """
-        checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(position_x,position_y,20,17) 
+        checkBox_dict contient les coordonnées de toutes les checkboxes sous la forme 'i_j':(position_x,position_y,20,17)
         20 correspond à la largeur
         17 correspond à la hauteur
         """
@@ -33,11 +33,11 @@ class Ui_Principal(object):
 
         Principal.setObjectName("Principal")
         Principal.resize(largeur,longueur)
-        
+
         self.liste_check = []
         for i in range(taille_grille):
             liste_i = []
-            for j in range(taille_grille): 
+            for j in range(taille_grille):
                 self.checkBox= QtWidgets.QCheckBox(Principal)
                 self.checkBox.setGeometry(QtCore.QRect(*self.checkBox_dict[(i,j)]))
                 self.checkBox.setText("")
@@ -52,13 +52,13 @@ class Ui_Principal(object):
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton = QtWidgets.QPushButton(Principal)
         self.pushButton.setGeometry(QtCore.QRect(largeur-80, longueur - 30, 75, 23))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Principal)
-        self.pushButton_2.setGeometry(QtCore.QRect(largeur - 160, longueur - 30, 75, 23))
-        self.pushButton_2.setObjectName("pushButton_2")
-        
+        # self.pushButton.setObjectName("pushButton")
+        # self.pushButton_2 = QtWidgets.QPushButton(Principal)
+        # self.pushButton_2.setGeometry(QtCore.QRect(largeur - 160, longueur - 30, 75, 23))
+        # self.pushButton_2.setObjectName("pushButton_2")
+
         ###                     MENU                        ###
-        
+
         self.menubar = QtWidgets.QMenuBar(Principal)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
@@ -73,25 +73,25 @@ class Ui_Principal(object):
         self.menuFichier.addAction(self.ouvrir_grille)
         self.menuFichier.addAction(self.enregistrer_grille)
         self.menubar.addAction(self.menuFichier.menuAction())
-        
+
         ###                     MENU                        ###
-        
+
         self.retranslateUi(Principal)
         self.ouvrir_grille.triggered.connect(Principal.ouvrir_grille)
         self.enregistrer_grille.triggered.connect(Principal.enregistrer_grille)
-        self.pushButton_2.clicked.connect(Principal.effacer)
+        #self.pushButton_2.clicked.connect(Principal.effacer)
         self.pushButton_4.clicked.connect(Principal.domaine)
         self.pushButton.clicked.connect(Principal.resolution)
         QtCore.QMetaObject.connectSlotsByName(Principal)
 
     def retranslateUi(self, Principal):
-    
-        global taille_grille 
-        
+
+        global taille_grille
+
         _translate = QtCore.QCoreApplication.translate
         Principal.setWindowTitle(_translate("Principal", "Résolution du MathDoku de taille " + str(taille_grille) + 'x' + str(taille_grille)))
         self.pushButton.setText(_translate("Principal", "Résoudre !"))
-        self.pushButton_2.setText(_translate("Principal", "Effacer"))
+        #self.pushButton_2.setText(_translate("Principal", "Effacer"))
         self.pushButton_4.setText(_translate("Principal", "Valider"))
         self.menuFichier.setTitle(_translate("Principal", "Options"))
         self.ouvrir_grille.setText(_translate("Principal", "Ouvrir une grille"))

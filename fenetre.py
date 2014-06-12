@@ -6,7 +6,7 @@ from t import *
 from t2 import *
 from fonctions import *
 from bruteforce import *
-from t3 import *
+import numpy
 
 class FenetrePrincipal(QDialog):
     global taille_grille
@@ -87,16 +87,12 @@ class FenetrePrincipal(QDialog):
         optimize(dico)
         resultat=bruteforce(dico,taille_grille[1])
         if resultat[0] :
-            self.afficher_resultat()
-        print(resultat)
+            print('Solved in',resultat[2],'operations and',resultat[3],'secondes \n',numpy.asarray(resultat[1]))
+            self.close()
 
     def effacer(self):
         self.afficher_resultat()
-    def afficher_resultat(self):
-        global taille_grille
-        global resultat
-        self.screen3 = Resultat(taille_grille, resultat)
-        self.screen3.show()
+
 class MathDoku(QDialog):
     #global taille_grille
     taille_grille=dict()
@@ -117,27 +113,6 @@ class MathDoku(QDialog):
         self.close()
         self.screen2 = FenetrePrincipal(self.taille_grille)
         self.screen2.show()
-
-class Resultat(QDialog):
-    global taille_grille
-    global resultat
-
-    taille_grille = dict()
-    resultat = dict()
-
-    def __init__(self,taille, result ,parent=None):
-        global taille_grille
-        global resultat
-        taille_grille= taille
-        resultat = result
-        super(Resultat, self).__init__(parent)
-        self.createWidgets()
-
-    def createWidgets(self):
-        global taille_grille
-        global resultat
-        self.ui = Ui_Resultat(taille_grille, resultat)
-        self.ui.setupUi(self)
 
 
 if __name__=='__main__':
