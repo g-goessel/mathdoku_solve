@@ -42,7 +42,7 @@ class FenetrePrincipal(QDialog):
                     checkBox.setChecked(False)
                     checkBox.setCheckable(False)
                     checkBox.hide()
-                    liste_coordonnees.append((j,i))
+                    liste_coordonnees.append((i,j))
         liste.append(numero_domaine)
         liste.append(liste_coordonnees)
         dico[reference] = liste
